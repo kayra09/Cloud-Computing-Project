@@ -1,5 +1,21 @@
-<p>Commit test</p>
-<a> </a>
-<p>Commit Akin</p>
-<a> </a>
-<p>Commit Ata</p>
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+    <table>
+        <tr>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Number of Posts</th>
+            <th></th>
+        </tr>
+        {% for courses in course_codes %}
+        <tr>
+            <td>{{courses[0]}}</td>
+            <td>{{courses[1]}}</td>
+            <td>Not implemented yet</td>
+            <td><a href="/see_course/{{courses[0]}}">See the materials</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
