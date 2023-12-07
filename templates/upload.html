@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload Page</title>
+</head>
+<body>
+
+    <h1>Image Upload Page</h1>
+
+    <form id="uploadForm" enctype="multipart/form-data" method="post" action="/save">
+        <label for="courses">Select a course:</label>
+        <select id="courses" name="course">
+             {% for course in courses %}
+              <option value={{course[0]}}>{{course[0]}}</option>
+             {%endfor%}
+        </select>
+
+        <br>
+
+        <input type="file" id="fileInput" name="file" accept="image/png, image/jpeg">
+        <div id="uploadedFileContainer" style="display:none;">
+            <h2>Uploaded Image:</h2>
+            <img id="uploadedImage" alt="Uploaded Image">
+            <button type="button" onclick="redirectToSave()">Confirm and Redirect to Save</button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function () {
+            confirmUpload();
+        });
+
+        function confirmUpload() {
+            // Get the file input element
+            var fileInput = document.getElementById('fileInput');
+
+            // Check if a file is selected
+            if (fileInput.files.length > 0) {
+                // Display the uploaded image
+                document.getElementById('uploadedImage').src = URL.createObjectURL(fileInput.files[0]);
+
+                // Show the uploaded file container
+                document.getElementById('uploadedFileContainer').style.display = 'block';
+            }
+        }
+
+        function redirectToSave() {
+            // Submit the form to trigger the /save route
+            document.getElementById('uploadForm').submit();
+        }
+    </script>
+
+</body>
+</html>
