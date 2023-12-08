@@ -1,0 +1,87 @@
+/* Style for the Course Page */
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #4076c2;
+    color: white;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.image-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-list li {
+    margin: 10px;
+}
+
+.image-list img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+ul {
+    float: left;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+li {
+    float: left;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+p {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    h1 {
+        padding: 15px;
+    }
+
+    h2 {
+        margin: 15px 0;
+    }
+
+    .image-list li {
+        margin: 8px;
+    }
+}

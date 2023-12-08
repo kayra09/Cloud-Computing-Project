@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
+    <title>Main Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/index_style.css">
+</head>
 <body>
-    <table>
-        <tr>
-            <th>Course Code</th>
-            <th>Course Name</th>
-            <th>Number of Posts</th>
-            <th></th>
-        </tr>
-        {% for courses in course_codes %}
-        <tr>
-            <td>{{courses[0]}}</td>
-            <td>{{courses[1]}}</td>
-            <td>Not implemented yet</td>
-            <td><a href="/see_course/{{courses[0]}}">See the materials</a></td>
-        </tr>
-        {%endfor%}
-    </table>
-    <br>
-    <a href="/upload">Upload Course Material</a>
+
+    <div class="container">
+        <h2>Course List</h2>
+
+        <table class="table_bordered">
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Number of Posts</th>
+                <th>Actions</th>
+            </tr>
+            {% for courses in course_codes %}
+            <tr>
+                <td>{{ courses[0] }}</td>
+                <td>{{ courses[1] }}</td>
+                <td>Not implemented yet</td>
+                <td><a href="/see_course/{{ courses[0] }}">See the materials</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br>
+
+        <!-- Add a button -->
+        <button class="button_blue" onclick="location.href='/upload'">Upload Course Material</button>
+    </div>
+
 </body>
+</html>

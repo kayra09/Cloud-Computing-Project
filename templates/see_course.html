@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Course Page</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/see_course_style.css">
 </head>
 <body>
-<h1>{{ course_code }}</h1>
+    <h1>{{ course_code }}</h1>
 
-{% if image_files %}
-    <h2>Images for {{ course_code }}</h2>
-    <ul>
-        {% for image_file in image_files %}
-            <li>
-                <img src="{{ url_for('static', filename='cloud_files_temporary/' + course_code + '/' + image_file) }}" alt="{{ image_file }}">
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No images available for this course.</p>
-{% endif %}
+    {% if image_files %}
+        <h2>Images for {{ course_code }}</h2>
+        <ul class="image-list">
+            {% for image_file in image_files %}
+                <li>
+                    <img src="{{ url_for('static', filename='cloud_files_temporary/' + course_code + '/' + image_file) }}" alt="{{ image_file }}">
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No images available for this course.</p>
+    {% endif %}
 </body>
 </html>
