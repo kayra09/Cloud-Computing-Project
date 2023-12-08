@@ -4,7 +4,7 @@
     <title>Course Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="static/see_course_style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='see_course_style.css') }}">
 </head>
 <body>
     <h1>{{ course_code }}</h1>
