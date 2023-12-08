@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Course Page</title>
+    <title>{{ course_code }}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='see_course_style.css') }}">
@@ -10,7 +10,7 @@
     <h1>{{ course_code }}</h1>
 
     {% if image_files %}
-        <h2>Images for {{ course_code }}</h2>
+        <h2>{{ course_code }} Course Materials</h2>
         <ul class="image-list">
             {% for image_file in image_files %}
                 <li>

@@ -1,10 +1,9 @@
-/* Style for the Course Page */
-
 body {
     font-family: "Raleway", sans-serif;
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -23,47 +22,31 @@ h2 {
 .image-list {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .image-list li {
-    margin: 10px;
+    width: 100%; /* Make the list item take full width */
+    display: flex;
+    justify-content: center; /* Center the image in the list item */
+    margin: 50px 0; /* Add some vertical space between images */
 }
 
 .image-list img {
-    max-width: 100%;
-    height: auto;
+    width: 600px; /* Set a specific width */
+    max-width: 600px; /* Limit the size to not be too large */
+    height: 400px; /* Maintain aspect ratio */
+    max-height: 600px;
     border: 1px solid #ccc;
+    display: block; /* Blocks are treated as a box, taking up the full width */
+    margin: auto; /* Center the image block */
 }
 
-ul {
-    float: left;
-    width:  100px;
-    height: 100px;
-    object-fit: cover;
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
-
-li {
-    float: left;
-    width:  100px;
-    height: 100px;
-    object-fit: cover;
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+ul, li {
+    list-style-type: none; /* Remove bullets */
 }
 
 p {
@@ -81,7 +64,7 @@ p {
         margin: 15px 0;
     }
 
-    .image-list li {
-        margin: 8px;
+    .image-list img {
+        max-width: 95%; /* Allow the image to be a bit larger on smaller screens */
     }
 }
