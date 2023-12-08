@@ -5,6 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-{{course_code}}
+<h1>{{ course_code }}</h1>
+
+{% if image_files %}
+    <h2>Images for {{ course_code }}</h2>
+    <ul>
+        {% for image_file in image_files %}
+            <li>
+                <img src="{{ url_for('static', filename='cloud_files_temporary/' + course_code + '/' + image_file) }}" alt="{{ image_file }}">
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No images available for this course.</p>
+{% endif %}
 </body>
 </html>
