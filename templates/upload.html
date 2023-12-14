@@ -34,24 +34,17 @@
         });
 
         function confirmUpload() {
-            // Get the file input element
             var fileInput = document.getElementById('fileInput');
 
-            // Check if a file is selected
             if (fileInput.files.length > 0) {
-                // Display the uploaded image
                 document.getElementById('uploadedImage').src = URL.createObjectURL(fileInput.files[0]);
-
-                // Show the uploaded file container
                 document.getElementById('uploadedFileContainer').style.display = 'block';
             }
         }
 
         function redirectToSave() {
-            // Submit the form to trigger the /save route
             document.getElementById('uploadForm').submit();
         }
     </script>
-
 </body>
 </html>

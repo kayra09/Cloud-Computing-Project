@@ -114,12 +114,13 @@ def generate_amazon_S3_name(course_code):
 @app.route("/")
 def main_page():
     course_codes = get_course_table()
+    remove_temporary_file()
     return render_template("index.html",course_codes=course_codes)
 
 
 @app.route("/see_course/<course_code>")
 def see_course(course_code):
-    # Construct the path to the directory where images are stored
+    retrieve_files(str(course_code))
     image_directory = os.path.join("static", "cloud_files_temporary", course_code)
 
     # Check if the directory exists
@@ -128,7 +129,6 @@ def see_course(course_code):
         image_files = [file for file in os.listdir(image_directory) if file.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
     else:
         image_files = []
-
     return render_template("see_course.html", course_code=course_code, image_files=image_files)
 
 
@@ -149,11 +149,10 @@ def save():
                 file.save(path)
                 file_name = generate_amazon_S3_name(course)
                 upload_file(file_name,path)
+                os.remove(path)
                 print("File uploaded to the S3, {}".format(file_name))
     return redirect(url_for("main_page"))
 
 
 if __name__ == '__main__':
-    update_course_materials()
     app.run()
-    remove_temporary_file()
