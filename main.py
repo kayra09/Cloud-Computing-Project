@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from flask import *
 import mysql.connector
@@ -39,9 +40,20 @@ def retrieve_file(file_name, number):
     bucket_name = 'cng495'
     s3_key = str(file_name) + ".jpg"  # Key/name under which the file will be stored in the S3 bucket
     fileName = file_name.split("_")[0]
-    local_file_path = f'static/cloud_files_temporary/{fileName}/{number}.jpg'  # Path where you want to save the downloaded file
 
-    # Ensure that the directory for file_name exists
+    # Base directory where cloud_files_temporary will be located.
+    base_directory = 'static'
+
+    cloud_files_temp_directory = os.path.join(base_directory, 'cloud_files_temporary')
+
+    # Check and create cloud_files_temporary if it does not exist.
+    if not os.path.exists(cloud_files_temp_directory):
+        os.makedirs(cloud_files_temp_directory)
+
+    # Now, set up the local file path with the specific file name and number.
+    local_file_path = os.path.join(cloud_files_temp_directory, fileName, f'{number}.jpg')
+
+    # Ensure that the directory for file_name exists.
     file_name_directory = os.path.dirname(local_file_path)
     if not os.path.exists(file_name_directory):
         os.makedirs(file_name_directory)
@@ -72,6 +84,15 @@ def retrieve_files(courseCode):
 def update_course_materials():
     retrieve_files("cng100")
     retrieve_files("cng499")
+
+
+def remove_temporary_file():
+    directory_path = 'static/cloud_files_temporary'
+
+    # Check if the directory exists
+    if os.path.exists(directory_path):
+        # Remove the directory and all its contents
+        shutil.rmtree(directory_path)
 
 
 def generate_amazon_S3_name(course_code):
@@ -135,3 +156,4 @@ def save():
 if __name__ == '__main__':
     update_course_materials()
     app.run()
+    remove_temporary_file()
