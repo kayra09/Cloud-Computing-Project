@@ -152,7 +152,16 @@ def save():
                 os.remove(path)
                 print("File uploaded to the S3, {}".format(file_name))
     return redirect(url_for("main_page"))
-
-
+@app.route("/sub_page")
+def sub_page():
+    courses = get_course_table()
+    return render_template("sub_page.html",courses=courses)
+@app.route("/add_sub",methods=['POST'])
+def add_sub():
+    email = request.form.get('email')
+    course = request.form.get('course')
+    print(course)
+    print(email)
+    return redirect(url_for("main_page"))
 if __name__ == '__main__':
     app.run()
