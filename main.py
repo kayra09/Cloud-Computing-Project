@@ -109,8 +109,19 @@ def generate_amazon_S3_name(course_code):
     cursor.close()
     db.close()
     return name
-
-
+def publish(course):
+    aws_access_key_id = 'AKIA2CXPV6DKX4F46E4S'
+    aws_secret_access_key = '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'
+    sns_client = boto3.client('sns', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,
+                              region_name="us-east-1")
+    topic_arn = "arn:aws:sns:us-east-1:693066133717:" + str(course)
+    message = "There is a new upload in " + str(course) + "."
+    response = sns_client.publish(
+        TopicArn=topic_arn,
+        Message=message,
+        Subject='New upload',  # Replace with your subject
+    )
+    return 0
 @app.route("/")
 def main_page():
     course_codes = get_course_table()
@@ -151,6 +162,7 @@ def save():
                 upload_file(file_name,path)
                 os.remove(path)
                 print("File uploaded to the S3, {}".format(file_name))
+    publish(course)
     return redirect(url_for("main_page"))
 @app.route("/sub_page")
 def sub_page():
@@ -158,10 +170,23 @@ def sub_page():
     return render_template("sub_page.html",courses=courses)
 @app.route("/add_sub",methods=['POST'])
 def add_sub():
+    aws_access_key_id = 'AKIA2CXPV6DKX4F46E4S'
+    aws_secret_access_key = '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'
     email = request.form.get('email')
     course = request.form.get('course')
-    print(course)
-    print(email)
+    sns_client = boto3.client('sns', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key, region_name="us-east-1")
+    if course == "cng100":
+        response = sns_client.subscribe(
+            TopicArn="arn:aws:sns:us-east-1:693066133717:cng100",
+            Protocol='email',
+            Endpoint=email
+        )
+    if course == "cng499":
+        response = sns_client.subscribe(
+            TopicArn="arn:aws:sns:us-east-1:693066133717:cng499",
+            Protocol="email",
+            Endpoint=email
+        )
     return redirect(url_for("main_page"))
 if __name__ == '__main__':
     app.run()
