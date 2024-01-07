@@ -104,12 +104,11 @@ def generate_amazon_S3_name(course_code):
     name = str(course_code) + "_"
     db = mysql.connector.connect(host='localhost', database='capstone_project', user='root', password='root')
     cursor = db.cursor()
-    cursor.execute("SELECT COUNT(*) FROM post WHERE course_code = %s", (course_code,))
-    count_result = cursor.fetchone()
-    # Ensure count_result is not None before accessing the count
-    if count_result:
-        count = count_result[0]
-        name += str(count + 1)  # You might want to adjust this logic based on your requirements
+    cursor.execute("SELECT * FROM post WHERE course_code = %s", (course_code,))
+    result = cursor.fetchall()
+    result = result[-1]
+    result = result[0] +1
+    name += str(result)
     # Close the database connection
     cursor.close()
     db.close()
@@ -127,6 +126,39 @@ def publish(course):
         Subject='New upload',  # Replace with your subject
     )
     return 0
+
+
+def delete_file(file_name):
+    aws_access_key_id = 'AKIA2CXPV6DKX4F46E4S'
+    aws_secret_access_key = 'IfO7aBeFYUWfh5viG+k8SjpFG7qOC7fDNbIXhSms'
+    bucket_name = 'cng495'
+    s3_key = str(file_name) + ".jpg"
+
+    # Delete from S3 bucket
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+    s3.delete_object(Bucket=bucket_name, Key=s3_key)
+
+    # Delete from the database
+    db = mysql.connector.connect(host='localhost', database='capstone_project', user='root', password='root')
+    cursor = db.cursor()
+
+    # Assuming file_name is the primary key in the database
+    file_name_parts = file_name.split("_")
+    cursor.execute("DELETE FROM POST WHERE idpost = %s AND course_code = %s", (int(file_name_parts[1]), file_name_parts[0]))
+    db.commit()
+
+def permission():
+    aws_access_key_id = 'AKIA2CXPV6DKX4F46E4S'
+    aws_secret_access_key = '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'
+    bucket_name = 'cng495'
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+    object_key = 'cng499_3.jpg'
+    response = s3.get_object_acl(Bucket=bucket_name, Key=object_key)
+
+    print("Object ACLs:")
+    for grant in response['Grants']:
+        print(grant)
+
 @app.route("/")
 def main_page():
     session["admin_login"] = 0
@@ -175,9 +207,13 @@ def delete_photos_page():
 def get_selected_photo(post_id,course_code):
     retrieve_file(course_code + "_" + str(post_id), post_id)
     return render_template("selected_photo.html",post_id=post_id,course_code=course_code)
+
 @app.route("/delete_image/<course_code>/<post_id>")
-def delete_post(course_code,post_id):
+def delete_post(course_code, post_id):
+    file_name = str(course_code) + "_" + str(post_id)
+    delete_file(file_name)
     return render_template("admin_panel.html")
+
 @app.route("/logout")
 def logout():
     session["admin_login"] = 0
@@ -228,4 +264,5 @@ def add_sub():
         )
     return redirect(url_for("main_page"))
 if __name__ == '__main__':
+    permission()
     app.run()
