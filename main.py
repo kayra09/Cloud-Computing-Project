@@ -231,6 +231,13 @@ def save():
         if 'file' in request.files:
             file = request.files['file']
             if file.filename != '':
+                # Base directory where requests will be located.
+                base_directory = 'templates'
+                requests = os.path.join(base_directory, 'requests')
+                # Check and create requests if it does not exist.
+                if not os.path.exists(requests):
+                    os.makedirs(requests)
+
                 path = "templates/requests/" + file.filename
                 file.save(path)
                 file_name = generate_amazon_S3_name(course)
