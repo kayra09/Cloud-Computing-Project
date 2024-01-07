@@ -39,7 +39,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (1,'not implemented','cng100','not implemented'),(2,'not implemented','cng100','not implemented'),(3,'not implemented','cng100','not implemented'),(4,'not implemented','cng100','not implemented'),(5,'not implemented','cng100','not implemented'),(1,'not implemented','cng499','not implemented'),(2,'not implemented','cng499','not implemented'),(3,'not implemented','cng499','not implemented'),(4,'not implemented','cng499','not implemented'),(5,'not implemented','cng499','not implemented'),(6,'not implemented','cng499','not implemented');
+INSERT INTO `post` VALUES (1,'not implemented','cng100','not implemented'),(2,'not implemented','cng100','not implemented'),(3,'not implemented','cng100','not implemented'),(4,'not implemented','cng100','not implemented'),(5,'not implemented','cng100','not implemented'),(6,'not implemented','cng100','not implemented'),(1,'not implemented','cng499','not implemented'),(2,'not implemented','cng499','not implemented'),(3,'not implemented','cng499','not implemented'),(4,'not implemented','cng499','not implemented'),(5,'not implemented','cng499','not implemented'),(6,'not implemented','cng499','not implemented'),(7,'not implemented','cng499','not implemented');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-14 22:15:23
+-- Dump completed on 2024-01-07 21:55:47

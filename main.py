@@ -16,7 +16,12 @@ def get_course_table():
     cursor.execute("SELECT * FROM course_code")
     course_codes=cursor.fetchall()
     return course_codes
-
+def get_post_table():
+    db = mysql.connector.connect(host='localhost', database='capstone_project', user='root', password='root')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM post")
+    posts = cursor.fetchall()
+    return posts
 
 def upload_file(file_name,file_path):
     aws_access_key_id = 'AKIA2CXPV6DKX4F46E4S'
@@ -124,11 +129,32 @@ def publish(course):
     return 0
 @app.route("/")
 def main_page():
+    session["admin_login"] = 0
     course_codes = get_course_table()
     remove_temporary_file()
     return render_template("index.html",course_codes=course_codes)
+@app.route("/admin")
+def admin_login_page():
+    if session["admin_login"] == 1:
+        return render_template("admin_panel.html")
+    else:
+        return render_template("admin_login_page.html")
+@app.route("/admin_login",methods=['GET', 'POST'])
+def admin_login():
+    username = request.form.get('username')
+    password = request.form.get('password')
 
+    db = mysql.connector.connect(host='localhost', database='capstone_project', user='root', password='root')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM admin")
+    user_list = cursor.fetchall()
 
+    for user in user_list:
+        if user[0] == username and user[1] == password:
+            session["admin_login"] = 1
+            return render_template("admin_panel.html")
+        else:
+            return redirect(url_for("main_page"))
 @app.route("/see_course/<course_code>")
 def see_course(course_code):
     retrieve_files(str(course_code))
@@ -141,8 +167,21 @@ def see_course(course_code):
     else:
         image_files = []
     return render_template("see_course.html", course_code=course_code, image_files=image_files)
-
-
+@app.route("/delete_photos")
+def delete_photos_page():
+    posts=get_post_table()
+    return render_template("delete_photos_page.html",posts=posts)
+@app.route("/view_and_delete/<post_id>/<course_code>")
+def get_selected_photo(post_id,course_code):
+    retrieve_file(course_code + "_" + str(post_id), post_id)
+    return render_template("selected_photo.html",post_id=post_id,course_code=course_code)
+@app.route("/delete_image/<course_code>/<post_id>")
+def delete_post(course_code,post_id):
+    return render_template("admin_panel.html")
+@app.route("/logout")
+def logout():
+    session["admin_login"] = 0
+    return redirect(url_for("main_page"))
 @app.route("/upload")
 def upload():
     courses = get_course_table()

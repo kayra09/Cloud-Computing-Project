@@ -16,27 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `course_code`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `course_code`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `course_code` (
-  `course_code` char(45) NOT NULL,
-  `course_name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`course_code`)
+CREATE TABLE `admin` (
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course_code`
+-- Dumping data for table `admin`
 --
 
-LOCK TABLES `course_code` WRITE;
-/*!40000 ALTER TABLE `course_code` DISABLE KEYS */;
-INSERT INTO `course_code` VALUES ('cng100','oryantasyon'),('cng499','cloud');
-/*!40000 ALTER TABLE `course_code` ENABLE KEYS */;
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('admin','123');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-07 21:55:47
+-- Dump completed on 2024-01-07 21:55:46

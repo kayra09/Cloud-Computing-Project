@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+        <thead>
+            <tr>
+                <th>Post ID</th>
+                <th>Course Code</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <th>{{post[0]}}</th>
+                <th>{{post[2]}}</th>
+                <th><a href="/view_and_delete/{{post[0]}}/{{post[2]}}">View and delete</a></th>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</body>
+</html>
