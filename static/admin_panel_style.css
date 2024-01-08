@@ -1,0 +1,48 @@
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+}
+
+.button-blue {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4076c2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-blue:hover {
+    background-color: #305c97;
+}
+
+.action {
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+    background-color: #4076c2;
+    color: white;
+    margin: 0;
+}

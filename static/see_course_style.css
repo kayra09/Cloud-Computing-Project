@@ -36,13 +36,12 @@ h2 {
 }
 
 .image-list img {
-    width: 600px; /* Set a specific width */
-    max-width: 600px; /* Limit the size to not be too large */
-    height: 400px; /* Maintain aspect ratio */
-    max-height: 600px;
-    border: 1px solid #ccc;
+    max-width: 50%; /* Allow images to resize responsively based on screen width */
+    max-height: 50%; /* Allow images to resize responsively based on screen height */
     display: block; /* Blocks are treated as a box, taking up the full width */
     margin: auto; /* Center the image block */
+    border: 1px solid #ccc;
+    object-fit: contain; /* Maintain aspect ratio without stretching the image */
 }
 
 ul, li {

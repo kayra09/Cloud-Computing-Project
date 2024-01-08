@@ -1,0 +1,45 @@
+/* Style for the Selected Material View Page */
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+    background-color: #4076c2;
+    color: white;
+    margin: 0;
+}
+
+img {
+    display: block;
+    margin: 40px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+a.button_blue {
+    display: block;
+    width: 20%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #4076c2;
+    color: #4076c2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+a.button_blue:hover {
+    background-color: #4055a8;
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,62 @@
+/* Style for the Delete Photos Page */
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+    background-color: #4076c2;
+    color: white;
+    margin: 0;
+}
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 50px auto;
+    background-color: #fff; /* Updated to a lighter shade of white */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: white;
+    text-align: center;
+}
+
+a.button_blue {
+    display: inline-block;
+    padding: 10px;
+    background-color: #4076c2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+a.button_blue:hover {
+    background-color: #4055a8;
+    text-decoration: none;
+    color: white;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        margin: 10px;
+    }
+}

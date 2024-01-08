@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Remove Course Materials</title>
+    <link rel="stylesheet" href="static/delete_photos_page_style.css">
 </head>
 <body>
+<h2>Remove Course Materials</h2>
 <table border="1">
         <thead>
             <tr>
@@ -16,9 +18,9 @@
         <tbody>
             {% for post in posts %}
             <tr>
-                <th>{{post[0]}}</th>
-                <th>{{post[2]}}</th>
-                <th><a href="/view_and_delete/{{post[0]}}/{{post[2]}}">View and delete</a></th>
+                <td>{{post[0]}}</td>
+                <td>{{post[2]}}</td>
+                <td><a href="/view_and_delete/{{post[0]}}/{{post[2]}}" class="button_blue">View and Remove</a></td>
             </tr>
             {%endfor%}
         </tbody>

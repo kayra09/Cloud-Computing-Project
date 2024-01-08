@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="static/admin_panel_style.css">
 </head>
 <body>
-<a href="/delete_photos"><button>Delete Posts</button></a>
-<a href="/logout"><button>Logout</button></a>
+    <h2>Admin Panel</h2>
+    <div class="container">
+        <div class="action">
+            <p>Delete Photos:</p>
+            <a href="/delete_photos"><button class="button-blue">Delete Posts</button></a>
+        </div>
+
+        <div class="action">
+            <p>Logout:</p>
+            <a href="/logout"><button class="button-blue">Logout</button></a>
+        </div>
+    </div>
 </body>
 </html>

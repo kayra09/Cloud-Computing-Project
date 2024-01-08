@@ -68,22 +68,23 @@ def retrieve_file(file_name, number):
     return 0
 
 
-def course_post_count(courseCode):
-    db = mysql.connector.connect(host='localhost', database='capstone_project', user='root', password='root')
-    cursor = db.cursor()
-    query = "SELECT COUNT(*) FROM post WHERE course_code = %s"
-    cursor.execute(query, (courseCode,))
-    count = cursor.fetchone()[0]
-    cursor.close()
-    db.close()
-    return count
+def course_posts_id(courseCode):
+    with mysql.connector.connect(host='localhost', database='capstone_project', user='root', password='root') as db:
+        with db.cursor() as cursor:
+            cursor.execute("SELECT idpost FROM post WHERE course_code = %s", (courseCode,))
+            posts_id = cursor.fetchall()
+
+    return posts_id
 
 
 def retrieve_files(courseCode):
-    count = course_post_count(courseCode)
+    posts_id = course_posts_id(courseCode)
 
-    for num in range(1, count+1):
-        retrieve_file(courseCode+"_" + str(num), num)
+    count = 0
+    while count < len(posts_id):
+        retrieve_file(courseCode + "_" + str(posts_id[count][0]), posts_id[count][0])
+        count += 1
+
 
 
 def update_course_materials():
@@ -147,18 +148,6 @@ def delete_file(file_name):
     cursor.execute("DELETE FROM POST WHERE idpost = %s AND course_code = %s", (int(file_name_parts[1]), file_name_parts[0]))
     db.commit()
 
-def permission():
-    aws_access_key_id = 'AKIA2CXPV6DKX4F46E4S'
-    aws_secret_access_key = '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'
-    bucket_name = 'cng495'
-    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
-    object_key = 'cng499_3.jpg'
-    response = s3.get_object_acl(Bucket=bucket_name, Key=object_key)
-
-    print("Object ACLs:")
-    for grant in response['Grants']:
-        print(grant)
-
 @app.route("/")
 def main_page():
     session["admin_login"] = 0
@@ -212,12 +201,12 @@ def get_selected_photo(post_id,course_code):
 def delete_post(course_code, post_id):
     file_name = str(course_code) + "_" + str(post_id)
     delete_file(file_name)
-    return render_template("admin_panel.html")
+    return redirect(url_for("admin_login_page"))
 
 @app.route("/logout")
 def logout():
     session["admin_login"] = 0
-    return redirect(url_for("main_page"))
+    return redirect(url_for("admin_login_page"))
 @app.route("/upload")
 def upload():
     courses = get_course_table()
@@ -271,5 +260,4 @@ def add_sub():
         )
     return redirect(url_for("main_page"))
 if __name__ == '__main__':
-    permission()
     app.run()

@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Selected Material View</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='selected_photo_style.css') }}">
 </head>
 <body>
+<h2>Selected Material View</h2>
 <img src="/static/cloud_files_temporary/{{course_code}}/{{post_id}}.jpg" alt="The Image that will be deleted">
 <br>
-<a href="/delete_image/{{course_code}}/{{post_id}}"><button>Delete the Image</button></a>
+<a href="/delete_image/{{course_code}}/{{post_id}}" class="button_blue"><button>Remove the Content</button></a>
 </body>
 </html>

@@ -1,0 +1,84 @@
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4076c2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #305c97;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    form {
+        padding: 10px;
+    }
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Placeholder style for better visibility */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #aaa;
+}
+
+/* Focus styles for better user experience */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #4076c2;
+    box-shadow: 0 0 5px rgba(64, 118, 194, 0.5);
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+    background-color: #4076c2;
+    color: white;
+    margin: 0;
+}
