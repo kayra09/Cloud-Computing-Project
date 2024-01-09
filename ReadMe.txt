@@ -17,6 +17,7 @@ Uploading image page - Kayra
 Showing images - Akın
 CSS files and Index page - Ata
 Database Design - Ata
-
 Amazon S3 - Worked on it together to understand it, ATA KAYRA AKIN
-
+Admin Panel - Kayra
+Delete images - Akın
+Amazon SNS (Simple Notification System) - Ata, Kayra, Akın
