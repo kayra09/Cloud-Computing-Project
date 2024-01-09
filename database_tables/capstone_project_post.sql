@@ -39,7 +39,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (9,'not implemented','cng100','not implemented'),(10,'not implemented','cng100','not implemented'),(11,'not implemented','cng100','not implemented'),(7,'not implemented','cng499','not implemented'),(8,'not implemented','cng499','not implemented'),(9,'not implemented','cng499','not implemented');
+INSERT INTO `post` VALUES (10,'not implemented','cng100','not implemented'),(11,'not implemented','cng100','not implemented'),(7,'not implemented','cng499','not implemented'),(8,'not implemented','cng499','not implemented'),(9,'not implemented','cng499','not implemented');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-08  2:54:49
+-- Dump completed on 2024-01-09 20:57:49
